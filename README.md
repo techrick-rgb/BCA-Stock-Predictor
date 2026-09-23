@@ -15,20 +15,6 @@ Notebook ini menganalisis data harga saham historis BBCA sejak 2015, membangun b
 
 > ⚠️ **Disclaimer:** Proyek ini dibuat untuk tujuan edukasi dan portofolio. Hasil prediksi **bukan** rekomendasi investasi atau trading. Selalu lakukan riset mandiri (DYOR) sebelum mengambil keputusan finansial.
 
-## 🗂️ Struktur Proyek
-
-```
-bca-stock-prediction/
-├── notebooks/
-│   └── BCA_Stock_Prediction.ipynb   # Notebook utama
-├── app.py                            # Dashboard interaktif Streamlit
-├── data/                             # Data hasil download (di-generate otomatis)
-├── models/                           # Model tersimpan (di-generate otomatis)
-├── images/                           # Grafik hasil analisis (di-generate otomatis)
-├── requirements.txt                  # Daftar dependensi Python
-├── .gitignore
-└── README.md
-```
 
 ## 🛠️ Tech Stack
 
