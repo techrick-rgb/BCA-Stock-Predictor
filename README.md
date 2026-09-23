@@ -47,7 +47,7 @@ bca-stock-prediction/
 
 1. **Clone repository ini**
    ```bash
-   git clone https://github.com/USERNAME/bca-stock-prediction.git
+   https://github.com/techrick-rgb/BCA-Stock-Predictor.git
    cd bca-stock-prediction
    ```
 
