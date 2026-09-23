@@ -95,22 +95,22 @@ def train_model(data: pd.DataFrame, tune: bool = True):
 
     if tune:
         param_grid = {
-            "n_estimators": [200, 300],
-            "max_depth": [8, 12, None],
-            "min_samples_leaf": [1, 2, 5],
+            "n_estimators": [150, 250],
+            "max_depth": [8, 12],
+            "min_samples_leaf": [1, 3],
         }
-        tscv = TimeSeriesSplit(n_splits=5)
+        tscv = TimeSeriesSplit(n_splits=3)
         search = GridSearchCV(
             RandomForestRegressor(random_state=42),
             param_grid,
             cv=tscv,
             scoring="neg_root_mean_squared_error",
-            n_jobs=-1,
+            n_jobs=1,
         )
         search.fit(X_train, y_train)
         model = search.best_estimator_
     else:
-        model = RandomForestRegressor(n_estimators=300, max_depth=8, random_state=42)
+        model = RandomForestRegressor(n_estimators=200, max_depth=8, random_state=42)
         model.fit(X_train, y_train)
 
     y_pred = model.predict(X_test)
@@ -161,7 +161,7 @@ start_date = st.sidebar.date_input(
     "Data historis mulai dari", value=date(2015, 1, 1), max_value=date.today() - timedelta(days=30)
 )
 n_days_future = st.sidebar.slider("Prediksi berapa hari ke depan?", 1, 30, 7)
-tune_model = st.sidebar.checkbox("Tuning hyperparameter (lebih akurat, lebih lambat)", value=True)
+tune_model = st.sidebar.checkbox("Tuning hyperparameter (lebih akurat, lebih lambat & berat)", value=False)
 run_button = st.sidebar.button("🔄 Jalankan / Perbarui Analisis", type="primary")
 
 st.sidebar.markdown("---")
