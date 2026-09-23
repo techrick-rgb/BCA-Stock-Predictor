@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data & model artifacts (hasil download/training, tidak perlu di-commit)
+data/*.csv
+data/*.xlsx
+models/*.pkl
+
+# OS / Editor
+.DS_Store
+.vscode/
+*.swp
+
+# Environment variables
+.env
