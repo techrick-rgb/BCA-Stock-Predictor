@@ -7,8 +7,7 @@ A data science portfolio project that forecasts the share price of **PT Bank Cen
 ![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-<!-- TODO: add a live demo link once deployed, e.g. Streamlit Community Cloud -->
-<!-- 🔗 **Live demo:** https://your-app-name.streamlit.app -->
+🔗 **Live demo:** https://bca-stock-predictor-demo1d.streamlit.app
 
 ## 📝 Overview
 
@@ -124,8 +123,6 @@ Your browser will open automatically at `http://localhost:8501`. Click **"Run / 
 | Random Forest (tuned)    | –    | –   | –    | –  |
 
 ![Predicted vs. Actual](images/predicted_vs_actual.png)
-
-![Dashboard screenshot](images/dashboard.png)
 
 ## ⚠️ Limitations
 
