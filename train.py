@@ -34,7 +34,7 @@ logger = logging.getLogger("train_pipeline")
 
 def run_pipeline(tune: bool = True):
     logger.info("=== Starting Data Engineering & Model Training Pipeline ===")
-    
+
     # 1. Ingestion
     raw_df = fetch_stock_data(ticker=TICKER, start_date=DEFAULT_START_DATE, fallback_path=RAW_DATA_PATH)
     logger.info("Dataset loaded: %d rows from %s to %s", len(raw_df), raw_df["Date"].min(), raw_df["Date"].max())

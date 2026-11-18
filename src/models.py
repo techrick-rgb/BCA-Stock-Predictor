@@ -3,10 +3,9 @@ Machine learning training, model serialization, evaluation, and recursive infere
 """
 
 import hashlib
-import json
 import logging
 from pathlib import Path
-from typing import Any, Dict, Optional, Tuple
+from typing import Any
 
 import joblib
 import numpy as np
@@ -27,7 +26,7 @@ from src.features import compute_rsi
 logger = logging.getLogger(__name__)
 
 
-def compute_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> Dict[str, float]:
+def compute_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, float]:
     """Compute standard regression metrics."""
     return {
         "RMSE": float(np.sqrt(mean_squared_error(y_true, y_pred))),
@@ -41,7 +40,7 @@ def split_time_series(
     data: pd.DataFrame,
     split_ratio: float = TRAIN_TEST_SPLIT_RATIO,
     feature_cols: list[str] = FEATURE_COLS,
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """
     Split time series strictly sequentially (no random shuffling)
     to prevent temporal leakage.
@@ -62,7 +61,7 @@ def split_time_series(
     return X_train, X_test, y_train, y_test, close_test, dates_test
 
 
-def evaluate_naive_baseline(y_test: np.ndarray, close_test: np.ndarray) -> Dict[str, float]:
+def evaluate_naive_baseline(y_test: np.ndarray, close_test: np.ndarray) -> dict[str, float]:
     """
     Persistence naive baseline: predict tomorrow's price = today's price (y_pred = close_t).
     Essential benchmark for financial random walk series.
@@ -72,7 +71,7 @@ def evaluate_naive_baseline(y_test: np.ndarray, close_test: np.ndarray) -> Dict[
 
 def train_linear_regression(
     X_train: np.ndarray, y_train: np.ndarray, X_test: np.ndarray, y_test: np.ndarray
-) -> Tuple[LinearRegression, Dict[str, float]]:
+) -> tuple[LinearRegression, dict[str, float]]:
     """Train and evaluate an Ordinary Least Squares baseline."""
     model = LinearRegression()
     model.fit(X_train, y_train)
@@ -88,7 +87,7 @@ def train_random_forest(
     y_test: np.ndarray,
     close_test: np.ndarray,
     tune: bool = False,
-) -> Tuple[RandomForestRegressor, np.ndarray, Dict[str, float]]:
+) -> tuple[RandomForestRegressor, np.ndarray, dict[str, float]]:
     """
     Train Random Forest regressor with optional TimeSeriesSplit hyperparameter tuning.
     Calculates directional accuracy against today's closing price.
@@ -180,7 +179,7 @@ def calculate_sha256(file_path: Path) -> str:
 
 
 def save_model(
-    model: Any, path: Path, checksum_path: Optional[Path] = MODEL_CHECKSUM_PATH
+    model: Any, path: Path, checksum_path: Path | None = MODEL_CHECKSUM_PATH
 ) -> str:
     """
     Serialize model artifact to disk and generate a SHA-256 checksum
@@ -202,7 +201,7 @@ def save_model(
 
 def load_model(
     path: Path,
-    checksum_path: Optional[Path] = MODEL_CHECKSUM_PATH,
+    checksum_path: Path | None = MODEL_CHECKSUM_PATH,
     verify_checksum: bool = True,
 ) -> Any:
     """

@@ -5,8 +5,8 @@ Decoupled serving application utilizing pre-trained artifacts and
 modular pipeline components from `src/`.
 """
 
-import sys
 import asyncio
+import sys
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -19,9 +19,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from src.config import (
-    DEFAULT_START_DATE,
     FEATURE_COLS,
-    METRICS_PATH,
     MODEL_PATH,
     RAW_DATA_PATH,
     TICKER,
@@ -33,9 +31,9 @@ from src.models import (
     evaluate_naive_baseline,
     load_model,
     predict_future_recursive,
+    save_model,
     split_time_series,
     train_random_forest,
-    save_model,
 )
 
 st.set_page_config(

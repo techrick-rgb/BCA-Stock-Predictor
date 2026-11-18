@@ -1,9 +1,9 @@
 import unittest
-import pandas as pd
-from pathlib import Path
 
-from src.data import validate_stock_data, fetch_stock_data
+import pandas as pd
+
 from src.config import RAW_DATA_PATH
+from src.data import fetch_stock_data, validate_stock_data
 
 
 class TestDataIngestion(unittest.TestCase):

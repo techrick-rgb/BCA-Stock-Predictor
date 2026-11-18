@@ -4,7 +4,6 @@ Data ingestion, validation, and storage layer.
 
 import logging
 from pathlib import Path
-from typing import Optional
 
 import pandas as pd
 import yfinance as yf
@@ -39,7 +38,7 @@ def validate_stock_data(df: pd.DataFrame) -> pd.DataFrame:
 def fetch_stock_data(
     ticker: str = TICKER,
     start_date: str = "2015-01-01",
-    fallback_path: Optional[Path] = RAW_DATA_PATH,
+    fallback_path: Path | None = RAW_DATA_PATH,
 ) -> pd.DataFrame:
     """
     Fetch historical daily stock candles with offline fallback resilience.

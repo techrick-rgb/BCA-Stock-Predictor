@@ -2,7 +2,6 @@
 Feature engineering pipeline for financial time-series.
 """
 
-import numpy as np
 import pandas as pd
 
 from src.config import FEATURE_COLS
@@ -22,7 +21,7 @@ def compute_rsi(series: pd.Series, period: int = 14) -> pd.Series:
 def build_features(df: pd.DataFrame, feature_cols: list[str] = FEATURE_COLS) -> pd.DataFrame:
     """
     Construct moving averages, volatility, RSI, and lag features.
-    
+
     Target is set to the NEXT trading day close (t+1).
     All features for row t strictly depend on data up to day t (zero lookahead leakage).
     """

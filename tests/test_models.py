@@ -1,20 +1,19 @@
+import tempfile
 import unittest
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 from sklearn.dummy import DummyRegressor
 
+from src.features import build_features
 from src.models import (
-    calculate_sha256,
     compute_metrics,
-    evaluate_naive_baseline,
     load_model,
     predict_future_recursive,
     save_model,
     split_time_series,
 )
-from src.features import build_features
-import tempfile
-from pathlib import Path
 
 
 class TestModels(unittest.TestCase):
@@ -37,7 +36,7 @@ class TestModels(unittest.TestCase):
 
         # Train dates must strictly precede test dates
         train_dates = data.dropna(subset=["Target"])["Target_Date"].values[:len(X_train)]
-        self.assertTrue((train_dates.max() < dates_test.min()))
+        self.assertTrue(train_dates.max() < dates_test.min())
 
     def test_predict_future_recursive_shape(self):
         dates = pd.date_range("2024-01-01", periods=120, freq="B")
