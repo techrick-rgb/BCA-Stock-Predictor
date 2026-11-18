@@ -1,7 +1,7 @@
 # Runtime dependencies for the Streamlit dashboard (app.py)
 # Install with: pip install -r requirements.txt
 yfinance>=0.2.40
-pandas>=2.2.3
+pandas>=3.1.1
 numpy>=2.1.0
 scikit-learn>=1.5.2
 plotly>=5.22.0
