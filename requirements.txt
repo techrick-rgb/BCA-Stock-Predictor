@@ -2,7 +2,7 @@
 # Install with: pip install -r requirements.txt
 yfinance>=0.2.40
 pandas>=2.2.3
-numpy>=2.1.0
+numpy>=2.5.4
 scikit-learn>=1.5.2
 plotly>=5.22.0
 streamlit>=1.38.0
